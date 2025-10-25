@@ -1,33 +1,31 @@
 :root {
-    /* Custom Properties: Colors */
+    /* Custom Properties: Colors (based on style-guide.md) */
     --color-green: hsl(75, 94%, 57%);
     --color-white: hsl(0, 0%, 100%);
     --color-grey-700: hsl(0, 0%, 20%);
     --color-grey-800: hsl(0, 0%, 12%);
     --color-grey-900: hsl(0, 0%, 8%);
 
-    /* Custom Properties: Spacing - all converted to REM */
-    --space-xs: 0.5rem;
-    /* 8px */
-    --space-sm: 0.9375rem;
-    /* 15px */
-    --space-md: 1.25rem;
-    /* 20px */
-    --space-lg: 1.5rem;
-    /* 24px */
-    --space-xl: 1.875rem;
-    /* 30px */
+    /* Custom Properties: Spacing & Sizing (all converted to REM) */
+    --space-xs: 0.5rem;   /* 8px */
+    --space-sm: 0.9375rem; /* 15px */
+    --space-md: 1.25rem;   /* 20px */
+    --space-lg: 1.5rem;    /* 24px */
+    --space-xl: 1.875rem;  /* 30px */
+
+    /* Custom Property for Box Shadow */
+    --shadow-dark: 0 0 1.25rem rgba(0, 0, 0, 0.5);
 
     /* Typography */
     font-family: 'Inter', Arial, Helvetica, sans-serif;
-    font-size: 100%;
-    /* Base 16px */
+    font-size: 100%; /* Base 16px */
 }
 
 * {
     box-sizing: border-box;
 }
 
+/* Mobile-First: Base Styles */
 body {
     background-color: var(--color-grey-900);
     min-height: 100vh;
@@ -41,60 +39,59 @@ body {
     padding: 1rem;
 }
 
-/* Mobile-First: Base Card Styles */
 .card {
-    /* Flexible Sizing: Fluid width between 20rem (320px) and 30rem (480px) */
+    /* Flexible Sizing: Fluid width between 320px and 480px, adapting to 90vw */
     width: clamp(20rem, 90vw, 30rem);
     background-color: var(--color-grey-800);
     border-radius: var(--space-xs);
     padding: var(--space-md);
-    box-shadow: 0 0 1.25rem rgba(0, 0, 0, 0.5);
+    box-shadow: var(--shadow-dark); 
+    text-align: center;
+}
+
+.content {
     text-align: center;
 }
 
 .content .profile-img {
-    width: 6.25rem;
-    height: 6.25rem;
+    width: 6.25rem; /* 100px */
+    height: 6.25rem; /* 100px */
     border-radius: 50%;
     /* Logical Property: Replaces margin-bottom */
     margin-block-end: var(--space-md);
 }
 
-/* Fixed: Targeting h1 for the main heading */
+/* Fixed: Targeting h1 */
 .content h1 {
     /* Flexible Sizing: Font size fluidly scales */
     font-size: clamp(1.25rem, 4vw, 1.75rem);
     font-weight: 700;
     color: var(--color-white);
-    margin-block-end: 1.0625rem;
-    /* 17px */
+    margin-block-end: 1.0625rem; /* 17px */
     margin-block-start: 0;
 }
 
-/* Fixed: Using specific classes for text */
 .location-text {
     font-weight: 600;
-    font-size: 0.875rem;
-    /* 14px */
+    font-size: 0.875rem; /* 14px */
     color: var(--color-green);
     margin-block-end: var(--space-md);
 }
 
 .bio-text {
     font-weight: 400;
-    font-size: 0.875rem;
-    /* 14px */
+    font-size: 0.875rem; /* 14px */
     color: var(--color-white);
     margin-block-end: var(--space-xl);
 }
 
-/* Fixed: Styling the semantic list */
+/* Social Links List Styling */
 .social-links {
     list-style: none;
-    padding-block-start: 0;
-    padding-block-end: 0;
-    /* Logical Properties: Replaces padding-left/right and margin-left/right */
+    /* Logical Properties: Replaces padding/margin left/right/top/bottom */
+    padding-block: 0;
     padding-inline-start: 0;
+    margin-block: 0;
     margin-inline-start: 0;
     margin-inline-end: 0;
     display: grid;
@@ -120,30 +117,24 @@ body {
     background-color: var(--color-green);
     color: var(--color-grey-900);
     outline: none;
-    /* Remove default focus outline if using custom styles */
 }
 
-/* Reduced Motion: Disable transitions */
+/* Accessibility: Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
     .social-links li a {
         transition: none;
     }
 }
 
-/* Mobile-First Media Queries (Using min-width and EM units) */
-
-/* Tablet and larger: min-width: 768px (48em) */
+/* Mobile-First Media Query: Tablet and larger (768px -> 48em) */
 @media (min-width: 48em) {
     .card {
-        width: 25rem;
-        padding: 2.5rem;
-        /* 40px */
+        width: 25rem; /* Fixed width for larger screens */
+        padding: 2.5rem; /* 40px */
     }
 
     .content .profile-img {
-        width: 7.5rem;
-        /* 120px */
-        height: 7.5rem;
-        /* 120px */
+        width: 7.5rem; /* 120px */
+        height: 7.5rem; /* 120px */
     }
 }

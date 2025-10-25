@@ -326,7 +326,7 @@ progress {
  */
 
 ::-webkit-file-upload-button {
-    /* Fixed: Replace vendor-prefixed deprecated keyword with modern general property */
+    /* Fixed: Replace deprecated property for browser compatibility */
     appearance: none;
     /* 1 */
     font: inherit;

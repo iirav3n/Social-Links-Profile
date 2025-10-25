@@ -1,117 +1,149 @@
 :root {
+    /* Custom Properties: Colors */
+    --color-green: hsl(75, 94%, 57%);
+    --color-white: hsl(0, 0%, 100%);
+    --color-grey-700: hsl(0, 0%, 20%);
+    --color-grey-800: hsl(0, 0%, 12%);
+    --color-grey-900: hsl(0, 0%, 8%);
+
+    /* Custom Properties: Spacing - all converted to REM */
+    --space-xs: 0.5rem;
+    /* 8px */
+    --space-sm: 0.9375rem;
+    /* 15px */
+    --space-md: 1.25rem;
+    /* 20px */
+    --space-lg: 1.5rem;
+    /* 24px */
+    --space-xl: 1.875rem;
+    /* 30px */
+
+    /* Typography */
     font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-size: 100%;
+    /* Base 16px */
 }
 
 * {
     box-sizing: border-box;
 }
 
-@media (max-width: 767px) {
-    .card {
-        width: 90%;
-        padding: 20px;
-    }
-
-    .content h3 {
-        font-size: 20px;
-    }
-
-    .content .profile-img {
-        width: 100px;
-        height: 100px;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 1439px) {
-    .card {
-        width: 60%;
-        padding: 30px;
-    }
-
-    .content h3 {
-        font-size: 24px;
-    }
-}
-
-@media (min-width: 1440px) {
-    .card {
-        width: 20%;
-        padding: 40px;
-    }
-
-    .content h3 {
-        font-size: 28px;
-    }
-
-    .content .profile-img {
-        width: 140px;
-        height: 140px;
-    }
-}
-
 body {
-    background-color: hsl(0, 0%, 8%);
+    background-color: var(--color-grey-900);
+    min-height: 100vh;
 }
 
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    padding: 1rem;
 }
 
+/* Mobile-First: Base Card Styles */
 .card {
-    background-color: hsl(0, 0%, 12%);
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-}
-
-.content {
+    /* Flexible Sizing: Fluid width between 20rem (320px) and 30rem (480px) */
+    width: clamp(20rem, 90vw, 30rem);
+    background-color: var(--color-grey-800);
+    border-radius: var(--space-xs);
+    padding: var(--space-md);
+    box-shadow: 0 0 1.25rem rgba(0, 0, 0, 0.5);
     text-align: center;
 }
 
 .content .profile-img {
-    width: 120px;
-    height: 120px;
+    width: 6.25rem;
+    height: 6.25rem;
     border-radius: 50%;
+    /* Logical Property: Replaces margin-bottom */
+    margin-block-end: var(--space-md);
 }
 
-.content h3 {
+/* Fixed: Targeting h1 for the main heading */
+.content h1 {
+    /* Flexible Sizing: Font size fluidly scales */
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
     font-weight: 700;
-    color: white;
-    font-size: 25px;
-    margin-bottom: 17px;
+    color: var(--color-white);
+    margin-block-end: 1.0625rem;
+    /* 17px */
+    margin-block-start: 0;
 }
 
-.content p:first-of-type {
-    margin-bottom: 40px;
-    color: hsl(75, 94%, 57%);
+/* Fixed: Using specific classes for text */
+.location-text {
     font-weight: 600;
-    font-size: 12px;
+    font-size: 0.875rem;
+    /* 14px */
+    color: var(--color-green);
+    margin-block-end: var(--space-md);
 }
 
-.content p:nth-of-type(2) {
-    padding: 10px;
-    color: hsl(0, 0%, 85%);
+.bio-text {
+    font-weight: 400;
+    font-size: 0.875rem;
+    /* 14px */
+    color: var(--color-white);
+    margin-block-end: var(--space-xl);
 }
 
-.content label {
+/* Fixed: Styling the semantic list */
+.social-links {
+    list-style: none;
+    padding-block-start: 0;
+    padding-block-end: 0;
+    /* Logical Properties: Replaces padding-left/right and margin-left/right */
+    padding-inline-start: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    display: grid;
+    gap: 1rem;
+}
+
+.social-links li a {
     display: block;
-    flex-direction: column;
-    padding: 10px;
-    margin: 10px;
-    background-color: hsl(0, 0%, 20%);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.content label:hover {
-    background-color: hsl(75, 94%, 57%);
-}
-
-.content a {
+    width: 100%;
+    /* Logical Property: Replaces padding-top/bottom */
+    padding-block: 0.875rem;
+    background-color: var(--color-grey-700);
+    color: var(--color-white);
+    font-weight: 600;
+    font-size: 0.875rem;
     text-decoration: none;
-    color: white;
+    border-radius: var(--space-xs);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.social-links li a:hover,
+.social-links li a:focus {
+    background-color: var(--color-green);
+    color: var(--color-grey-900);
+    outline: none;
+    /* Remove default focus outline if using custom styles */
+}
+
+/* Reduced Motion: Disable transitions */
+@media (prefers-reduced-motion: reduce) {
+    .social-links li a {
+        transition: none;
+    }
+}
+
+/* Mobile-First Media Queries (Using min-width and EM units) */
+
+/* Tablet and larger: min-width: 768px (48em) */
+@media (min-width: 48em) {
+    .card {
+        width: 25rem;
+        padding: 2.5rem;
+        /* 40px */
+    }
+
+    .content .profile-img {
+        width: 7.5rem;
+        /* 120px */
+        height: 7.5rem;
+        /* 120px */
+    }
 }
